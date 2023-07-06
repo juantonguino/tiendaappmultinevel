@@ -1,6 +1,7 @@
 package co.edu.usbcali.airlinesapp.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -70,6 +71,24 @@ public class DetallePedidoServiceImpl implements DetallePedidoService{
         detallePedido.setProducto(productoService.buscarProductoPorId(detallePedidoDTO.getProductoId()));
 
         return DetallePedidoMapper.domainToDto(detallePedidoRepository.save(detallePedido));
+    }
+
+    @Override
+    public List<Object> guardarListado(List<DetallePedidoDTO> listDetallePedido) throws PedidoException, ProductoException, DetallePedidoException {
+        return listDetallePedido.stream().map(temp-> {
+            try {
+                this.guardar(temp);
+            } catch (PedidoException e) {
+                throw new RuntimeException(e);
+            } catch (ProductoException e) {
+                throw new RuntimeException(e);
+            } catch (DetallePedidoException e) {
+                throw new RuntimeException(e);
+            }
+            finally {
+                return null;
+            }
+        }).collect(Collectors.toList());
     }
 
     private void validarDetallePedido(DetallePedidoDTO detallePedidoDTO, Boolean esActualizar)

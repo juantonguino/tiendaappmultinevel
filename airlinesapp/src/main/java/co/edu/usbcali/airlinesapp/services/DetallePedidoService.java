@@ -2,7 +2,6 @@ package co.edu.usbcali.airlinesapp.services;
 
 import java.util.List;
 
-import co.edu.usbcali.airlinesapp.domain.DetallePedido;
 import co.edu.usbcali.airlinesapp.dtos.DetallePedidoDTO;
 import co.edu.usbcali.airlinesapp.exceptions.DetallePedidoException;
 import co.edu.usbcali.airlinesapp.exceptions.PedidoException;
@@ -19,5 +18,8 @@ public interface DetallePedidoService {
 
 	    DetallePedidoDTO actualizar(DetallePedidoDTO detallePedidoDTO)
 	            throws PedidoException, ProductoException, DetallePedidoException;
+
+		List<Object> guardarListado(List<DetallePedidoDTO> listDetallePedido)
+			throws PedidoException, ProductoException, DetallePedidoException;
 
 }

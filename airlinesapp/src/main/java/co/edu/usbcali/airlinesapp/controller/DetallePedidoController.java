@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import co.edu.usbcali.airlinesapp.exceptions.DetallePedidoException;
+import co.edu.usbcali.airlinesapp.exceptions.PedidoException;
+import co.edu.usbcali.airlinesapp.exceptions.ProductoException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +34,10 @@ public class DetallePedidoController {
         return ResponseEntity.ok(detallePedidoService.guardar(detallePedidoDTO));
     }
 
+    @PostMapping("/guardarlistado")
+    ResponseEntity<List<Object>> guardarListado(@RequestBody List<DetallePedidoDTO> listaDetallePedido) throws ProductoException, DetallePedidoException, PedidoException {
+        return ResponseEntity.ok(detallePedidoService.guardarListado(listaDetallePedido));
+    }
     @GetMapping("/{id}")
     ResponseEntity<DetallePedidoDTO> buscarCliente(@PathVariable Integer id) throws Exception {
         return ResponseEntity.ok(detallePedidoService.buscarPorId(id));
