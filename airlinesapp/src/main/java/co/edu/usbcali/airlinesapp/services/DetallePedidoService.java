@@ -4,17 +4,20 @@ import java.util.List;
 
 import co.edu.usbcali.airlinesapp.domain.DetallePedido;
 import co.edu.usbcali.airlinesapp.dtos.DetallePedidoDTO;
+import co.edu.usbcali.airlinesapp.exceptions.DetallePedidoException;
+import co.edu.usbcali.airlinesapp.exceptions.PedidoException;
+import co.edu.usbcali.airlinesapp.exceptions.ProductoException;
 
 public interface DetallePedidoService {
 	
-	public List<DetallePedido> findAll();
-	
-	public DetallePedido findById(Long id);
-	
-	public DetallePedido save(DetallePedido detallePedido);
-	
-	public void delete(Long id);
-	
-	DetallePedidoDTO update(DetallePedidoDTO detallePedidoDTO);
+	 List<DetallePedidoDTO> obtenerTodos();
+
+	    DetallePedidoDTO buscarPorId(Integer id) throws DetallePedidoException;
+
+	    DetallePedidoDTO guardar(DetallePedidoDTO detallePedidoDTO)
+	            throws PedidoException, ProductoException, DetallePedidoException;
+
+	    DetallePedidoDTO actualizar(DetallePedidoDTO detallePedidoDTO)
+	            throws PedidoException, ProductoException, DetallePedidoException;
 
 }

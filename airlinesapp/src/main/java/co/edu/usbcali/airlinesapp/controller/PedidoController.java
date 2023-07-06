@@ -29,7 +29,7 @@ public class PedidoController {
 
     private final PedidoService pedidoService;
     
-    @PostMapping("/")
+    @PostMapping("/guardar")
     ResponseEntity<PedidoDTO> nuevoPedido(@RequestBody PedidoDTO pedidoDTO) throws Exception {
         return ResponseEntity.ok(pedidoService.guardar(pedidoDTO));
     }
@@ -39,12 +39,12 @@ public class PedidoController {
         return ResponseEntity.ok(pedidoService.buscarPorId(id));
     }
 
-    @GetMapping("/")
+    @GetMapping("/listarpedidos")
     ResponseEntity<List<PedidoDTO>> obtenerPedido() throws Exception {
         return ResponseEntity.ok(pedidoService.obtenerTodos());
     }
 
-    @PutMapping("/")
+    @PutMapping("/actualizar")
     ResponseEntity<PedidoDTO> actualizar(@RequestBody @Valid PedidoDTO pedidoDTO) throws PedidoException, EstadoPedidoException, ClienteException {
         return ResponseEntity.ok(pedidoService.actualizar(pedidoDTO));
     }
